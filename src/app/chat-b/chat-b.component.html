@@ -1,0 +1,67 @@
+<ion-content>
+  <div class="vw-100 vh-100 bg-primary bg-opacity-50 m-0 p-0">
+    <ion-card class="bg-dark" *ngFor="let mensajeLista of mensajes">
+   
+      <div *ngIf="esEscritor(mensajeLista)" class="row">
+        <div class="col-2"></div> <!-- Empty column -->
+        <div class="col-10  justify-content-end">
+          <ion-card class="bg-opacity-50 bg-primary">
+            <ion-card-header color="secondary" class="bg-opacity-25">
+              <ion-card-content class="text-white">
+                {{ mensajeLista.mensaje }}
+              </ion-card-content>
+              <ion-card-subtitle class="d-flex text-white">
+                <div class="text-end small-text col-12">
+                  {{ mensajeLista.fecha }}
+                </div>
+              </ion-card-subtitle>
+            </ion-card-header>
+          </ion-card>
+        </div>
+      </div>
+      
+
+
+
+      <div *ngIf="!esEscritor(mensajeLista)"  class="bg-opacity-50 bg-primary col-10 ">
+        <ion-card-header color="secconday" class=" bg-opacity-25">
+          <ion-card-title class="text-success">{{ mensajeLista.escritoPor }}</ion-card-title>
+          <ion-card-content class="text-white">
+             {{mensajeLista.mensaje}}
+          </ion-card-content>
+          <ion-card-subtitle class="d-flex text-white ">
+            <div class="text-end small-text col-12">
+                {{ mensajeLista.fecha }}
+            </div>
+          </ion-card-subtitle>
+        </ion-card-header>
+      </div>
+    </ion-card>
+  </div>
+</ion-content>
+<ion-footer>
+  <ion-grid class="bg-dark">
+    <ion-row>
+      <ion-col class="bg-dark bg-opacity-50 p-1" size="10">
+        <ion-input class="text-white" [formControl]="inputControl" maxlength="21" type="text"></ion-input>
+      </ion-col>
+      <ion-col (click)="crearMensaje()"
+        class="ion-text-center btn btn-primary d-flex align-items-center justify-content-center" size="2">
+        <ion-icon name="send"></ion-icon>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-footer>
+
+<ion-header>
+  <ion-toolbar  color="primary">
+    <ion-title class="text-center ">PPS-4B</ion-title>
+    <div class="d-flex justify-content-center gap-5">
+      <ion-badge (click)="irSeleccion()" class="me-5" color="secondary" class="p-2" slot="start">Selección</ion-badge>
+      <ion-badge (click)="salir()" color="warning" class="p-2" slot="end">Salir</ion-badge>
+    </div>
+  </ion-toolbar>
+  
+</ion-header>
+
+
